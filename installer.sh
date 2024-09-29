@@ -6,6 +6,11 @@ do_installation() {
     echo "Building Findex..."
     cargo build --release
 
+    if [[ $? -ne 0 ]]; then
+        echo "Findex failed to build."
+        exit 1
+    fi
+
     echo "Copying files..."
     sudo cp target/release/findex /usr/bin/findex
     sudo cp target/release/findex-daemon /usr/bin/findex-daemon
